@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Valentine? – For Preethi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <!-- Script for playful buttons, flowers, and music -->
+  <script defer src="valentine.js"></script>
+</head>
+<body class="valentine-page">
+  <div class="overlay"></div>
+
+  <header class="top-nav">
+     <div class="logo-heart">
+  <span class="logo-main">Preethi</span>
+  <span class="logo-sub">♥</span>
+</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="story.html">Our Story</a>
+      <a href="reasons.html">Why I Love You</a>
+      <a href="letter.html">Letter</a>
+      <a href="valentine.html" class="active">Valentine?</a>
+    </nav>
+  </header>
+
+  <main class="valentine-main">
+    <section class="question-card">
+      <h1 class="page-title">A Tiny Big Question</h1>
+      <p class="question-text">
+        Preethi, will you be my Valentine?
+      </p>
+
+      <div class="button-row">
+  <button id="yesBtn" class="primary-btn big-btn">YES 💖</button>
+  <button id="noBtn" class="ghost-btn big-btn">NO 🙃</button>
+
+</div>
+
+      <!-- Container where flowers and final love letter will appear -->
+      <div id="flowerContainer" class="flower-container"></div>
+      <section id="finalLetter" class="letter-paper final-letter hidden">
+        <p>Preethi,</p>
+
+        <p>
+          Thank you for saying yes — or at least for coming this far with me in this
+          little universe I built for you. Somewhere between every click and every
+          scroll, I just wanted you to feel how important you are to me.
+        </p>
+
+        <p>
+          Choosing you is the easiest thing my heart does every single day. I don’t
+          love you in some loud, dramatic way; I love you in the way I look forward
+          to your messages, in the way my mood lifts when I see your name, in the
+          way I imagine my future and quietly hope you are in it.
+        </p>
+
+        <p>
+          You are, to me, a safe place and a beautiful possibility at the same time.
+          And if you’ll let me, I’d like to keep choosing you — not just on
+          Valentine’s Day, but on all the ordinary days in between.
+        </p>
+
+        <p>With all my heart,</p>
+        <p>Me, hopelessly, happily, yours.</p>
+      </section>
+    </section>
+  </main>
+
+  <!-- Background music: starts only after YES is clicked.
+       Replace src with any soft mp3 you host locally. -->
+  <audio id="bgMusic" src="soft-background-music.mp3" preload="auto"></audio>
+
+  <footer class="soft-footer">
+    No matter how many pages I make, "you" will always be my favourite one.
+  </footer>
+</body>
+</html>
