@@ -1,0 +1,656 @@
+/* ===========================
+   Global styles
+   =========================== */
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #ffe0ec, var(--bg));
+  position: relative;
+  opacity: 0;
+  animation: pageFadeIn 0.9s ease-out forwards;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+
+:root {
+  --bg: #fff5f7;
+  --bg-soft: #ffe9f0;
+  --primary: #ff7aa2;
+  --primary-dark: #e75c88;
+  --accent: #f6d4a4;
+  --text-main: #40212b;
+  --text-soft: #7a4a59;
+  --card-bg: #ffffffcc;
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.08);
+  --radius-card: 16px;
+  --transition-base: 0.4s ease;
+  --font-heading: "Playfair Display", "Times New Roman", serif;
+  --font-body: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  min-height: 100vh;
+  background: radial-gradient(circle at top left, #ffe0ec, var(--bg));
+  position: relative;
+}
+
+/* Soft floating bokeh-style overlay */
+.overlay::before,
+.overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 182, 193, 0.35) 0, transparent 55%),
+    radial-gradient(circle at 80% 70%, rgba(255, 228, 225, 0.45) 0, transparent 55%);
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  z-index: -2;
+}
+
+/* Top navigation */
+
+.top-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 6vw;
+  backdrop-filter: blur(20px);
+  background: linear-gradient(to bottom, rgba(255, 245, 247, 0.95), rgba(255, 245, 247, 0.7));
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+}
+
+.logo-heart {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: var(--primary-dark);
+}
+
+.top-nav nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base);
+}
+
+.top-nav nav a:hover {
+  background: rgba(255, 182, 193, 0.15);
+  color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.top-nav nav a.active {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Layout helpers */
+
+.centered-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 6vw 80px;
+}
+
+.page-content {
+  max-width: 900px;
+  margin: 40px auto 70px;
+  padding: 0 6vw;
+}
+
+.valentine-main {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 6vw 70px;
+}
+
+/* Cards and sections */
+
+.intro-card,
+.question-card,
+.letter-paper {
+  background: var(--card-bg);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-soft);
+  padding: 32px 26px;
+  position: relative;
+  overflow: hidden;
+}
+
+.intro-card::before,
+.question-card::before,
+.letter-paper::before {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 182, 193, 0.25), transparent 60%);
+  top: -120px;
+  right: -120px;
+  opacity: 0.8;
+}
+
+/* Titles and text */
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: 8px;
+  color: var(--primary-dark);
+}
+
+.page-subtitle {
+  font-size: 0.98rem;
+  color: var(--text-soft);
+  margin-bottom: 28px;
+}
+
+/* Buttons */
+
+.primary-btn,
+.ghost-btn {
+  border-radius: 999px;
+  padding: 10px 22px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.98rem;
+  font-weight: 500;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.28s ease, color 0.28s ease;
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(231, 92, 136, 0.4);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(231, 92, 136, 0.5);
+}
+
+.ghost-btn {
+  background: transparent;
+  border: 1px solid rgba(231, 92, 136, 0.4);
+  color: var(--primary-dark);
+}
+
+.ghost-btn:hover {
+  background: rgba(255, 182, 193, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Special bigger buttons on valentine page */
+
+.big-btn {
+  min-width: 130px;
+  font-size: 1rem;
+  margin: 10px;
+}
+
+/* Footer */
+
+.soft-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  padding: 16px 10px 22px;
+  color: var(--text-soft);
+}
+
+/* Home page */
+
+.photo-frame {
+  width: 220px;
+  height: 220px;
+  margin: 24px auto 26px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 6px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.1) contrast(1.02);
+  transform: scale(1.02);
+}
+
+.intro-card h1 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.intro-card p {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Story page timeline */
+
+.timeline {
+  margin-top: 10px;
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(231, 92, 136, 0.2),
+    rgba(231, 92, 136, 0.05)
+  );
+}
+
+.timeline-item {
+  position: relative;
+  margin: 22px 0 26px 0;
+  padding: 18px 18px 16px 26px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.04);
+}
+
+.timeline-badge {
+  position: absolute;
+  left: -70px;
+  top: 16px;
+  background: #fff;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary-dark);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item h2 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.timeline-item p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.nav-buttons {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Hearts page background hearts */
+
+.reasons-page::before {
+  content: "♥ ♥ ♥";
+  position: fixed;
+  left: 10%;
+  top: 65%;
+  font-size: 2.8rem;
+  color: rgba(255, 182, 193, 0.35);
+  animation: floatHearts 10s linear infinite;
+  pointer-events: none;
+}
+
+.reasons-page::after {
+  content: "♥ ♥";
+  position: fixed;
+  right: 6%;
+  top: 20%;
+  font-size: 2.2rem;
+  color: rgba(255, 182, 193, 0.25);
+  animation: floatHearts2 12s linear infinite;
+  pointer-events: none;
+}
+
+/* Hearts grid */
+
+.heart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
+}
+
+.heart-card {
+  perspective: 1000px;
+  cursor: pointer;
+  height: 180px;
+  position: relative;
+}
+
+/* Inner wrapper that rotates */
+.heart-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+/* Both sides of the card */
+.heart-front,
+.heart-back {
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  padding: 24px 14px;
+  text-align: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.heart-front {
+  background: linear-gradient(135deg, #ffbfd2, #ff8fb3);
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  box-shadow: 0 15px 30px rgba(231, 92, 136, 0.4);
+}
+
+.heart-back {
+  background: #fff;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Flip effect */
+.heart-card.flipped .heart-inner {
+  transform: rotateY(180deg);
+}
+
+/* Hover flip on desktop */
+.heart-card:hover .heart-inner {
+  transform: rotateY(180deg);
+}
+
+/* Letter styles */
+
+.letter-paper {
+  background: linear-gradient(to bottom, #fffdf9, #fff7ea);
+  border: 1px solid rgba(246, 212, 164, 0.7);
+  max-width: 780px;
+  margin: 0 auto;
+  line-height: 1.8;
+  font-size: 0.98rem;
+  color: var(--text-main);
+}
+
+.letter-paper p + p {
+  margin-top: 12px;
+}
+
+/* Valentine question page */
+
+.question-text {
+  font-size: 1.2rem;
+  margin: 14px 0 24px;
+  text-align: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* Flower container */
+
+.flower-container {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin-top: 18px;
+  overflow: visible;
+}
+
+/* Petals (used by JS burst) */
+.petals {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #ffb7c9, #ff7aa2);
+  opacity: 0;
+}
+
+/* Final letter appears after YES */
+
+.final-letter {
+  margin-top: 22px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Animations */
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(-40px) translateX(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(80px) translateX(15px);
+  }
+  100% {
+    transform: translateY(180px) translateX(-15px);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInSlow {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.9s ease-out both;
+}
+
+.fade-in-slow {
+  animation: fadeInSlow 1.6s ease-out both;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeIn 0.9s ease-out forwards;
+}
+
+.fade-up.delay-1 {
+  animation-delay: 0.18s;
+}
+
+.fade-up.delay-2 {
+  animation-delay: 0.36s;
+}
+
+.fade-up.delay-3 {
+  animation-delay: 0.54s;
+}
+
+/* Soft floating hearts */
+
+@keyframes floatHearts {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-18px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes floatHearts2 {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+/* Gentle float on main photo */
+
+@keyframes floatSoft {
+  0%   { transform: translateY(0) scale(1.02); }
+  50%  { transform: translateY(-8px) scale(1.03); }
+  100% { transform: translateY(0) scale(1.02); }
+}
+
+/* ===========================
+   Responsive tweaks
+   =========================== */
+
+@media (max-width: 720px) {
+  .top-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .top-nav nav {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .top-nav nav a {
+    margin: 4px 6px 0 0;
+  }
+
+  .intro-card,
+  .question-card,
+  .letter-paper {
+    padding: 24px 18px;
+  }
+
+  .page-title {
+    font-size: 1.6rem;
+  }
+
+  .photo-frame {
+    width: 190px;
+    height: 190px;
+  }
+
+  .timeline {
+    padding-left: 36px;
+  }
+
+  .timeline::before {
+    left: 20px;
+  }
+
+  .timeline-item {
+    margin-left: 0;
+    padding-left: 22px;
+  }
+
+  .timeline-badge {
+    left: -60px;
+  }
+
+  .nav-buttons {
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  .valentine-main {
+    padding-top: 70px;
+  }
+}
+
+/* NO button: allow JS transform */
+#noBtn {
+  position: relative;
+  display: inline-block;
+}
+
+/* Heartbeat effect for final question text */
+.question-text {
+  font-size: 1.2rem;
+  margin: 14px 0 24px;
+  text-align: center;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  15%  { transform: scale(1.08); }
+  30%  { transform: scale(1); }
+  45%  { transform: scale(1.08); }
+  60%  { transform: scale(1); }
+  100% { transform: scale(1); }
+}
+/* Soft glowing pulse for YES button */
+#yesBtn {
+  animation: yesPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes yesPulse {
+  0%   { box-shadow: 0 0 0 rgba(231, 92, 136, 0.4); }
+  50%  { box-shadow: 0 0 20px rgba(231, 92, 136, 0.9); }
+  100% { box-shadow: 0 0 0 rgba(231, 92, 136, 0.4); }
+}
+
